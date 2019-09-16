@@ -1,0 +1,46 @@
+class Solution {
+    public String customSortString(String S, String T) {
+        if(S==null || S.length()==0) return T;
+        char[] ch= new char[26];
+        int[] count=new int[26];
+        int val=0;
+        String res="",temp="";
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(char c:S.toCharArray())
+        {
+            map.put(c,++val);
+        }
+        for(char c:T.toCharArray())
+        {
+            if(map.containsKey(c))
+            {
+                if(ch[map.get(c)]!='\u0000')
+                {
+                    count[map.get(c)]++;
+                }
+                else
+                {
+                    ch[map.get(c)]=c;
+                    count[map.get(c)]=1;
+                }
+            }
+            else
+            {
+                temp+=String.valueOf(c);
+            }
+        }
+        for(int i=0;i<26;i++)
+        {
+            if(count[i]==1)
+                res=res+String.valueOf(ch[i]);
+            else
+            {
+                for(int j=0;j<count[i];j++)
+                {
+                    res=res+String.valueOf(ch[i]);
+                }
+            }
+        }
+        return res+temp;
+    }
+}
