@@ -1,0 +1,42 @@
+/**************
+Time O(n)
+Space O(n)
+Leetcode yes
+problem no
+****************/
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        if(s.length() == 0)
+            return 0;
+        
+        Set<Character> set =new HashSet<>();
+        int startIndex=0;
+        int endIndex =0;
+        int maxLength = Integer.MIN_VALUE;
+        
+        while(startIndex < s.length() && endIndex < s.length())
+        {
+            char c =s.charAt(endIndex);
+            
+            if(set.contains(c))
+            {
+                
+                set.remove(s.charAt(startIndex));
+                startIndex++;
+            }
+            
+            else
+            {
+                set.add(c);
+                endIndex++;
+                maxLength = Math.max(maxLength, endIndex - startIndex);
+            }  
+            
+        }
+        
+        return maxLength;
+        
+        
+    }
+}
