@@ -1,6 +1,11 @@
 package CustomSortString;
 import java.util.HashMap;
 
+
+//Time Complexity	-	O(m+n) m - number of characters in string T
+//							   n - number of characters in string S
+//Space Complexity	-	O(1) as given in the problem, string T is composed of lower case letters ~ O(26) ~ O(const)
+
 class CustomSortString {
 	public String customSortString(String S, String T) {
 		HashMap<Character, Integer> map = new HashMap<>();
