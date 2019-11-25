@@ -15,18 +15,17 @@ class CustomSortString{
         for(char ch : T.toCharArray()){
             arr[ch-'a']++;
         }
-        boolean visited[] = new boolean[26];
         StringBuilder result = new StringBuilder("");
         for(char ch : S.toCharArray()){
             if(arr[ch-'a'] > 0){
                 for(int i = 0; i < arr[ch-'a']; i++){
                     result.append(ch);
                 }
-                visited[ch-'a'] = true;
+                arr[ch-'a'] = 0;
             }
         }
         for(char ch : T.toCharArray()){
-            if(!visited[ch-'a']){
+            if(arr[ch-'a']!=0){
                 result.append(ch);
             }
         }
