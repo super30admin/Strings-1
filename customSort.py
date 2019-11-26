@@ -1,5 +1,5 @@
 #Accepted on leetcode
-#Time complexity - O(max(N+M)) where N is len of S and M is len of T
+#Time complexity - O(N+M) where N is len of S and M is len of T
 #Space omplexity - O(N) use of hashmap
 
 class Solution(object):
