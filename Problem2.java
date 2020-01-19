@@ -1,6 +1,6 @@
 // Time Complexity - O(n) where n is the number of characters in the String
 // Space Complexity - O(1) since the hashmap will contain at the max 26 mappings in case of lowercase or 52 in case of all lowercase and uppercase characters
-
+// This solution worked on LeetCode
 // We are using 2 pointer solution which will make the brute force solution of n^2 time complexity to O(n). The slow pointer will be the start of the substring and the fast pointer will iterate to check for no repeatation with the help of hashmap. The Hashmap will contain the mapping of the character and the index where the character appearerd. once the character repeatation appears, The slow pointer needs to start from the index next to the first repeated character. 
 
 
