@@ -8,7 +8,7 @@ class Solution {
         for(char c : T.toCharArray()){
             map.put(c,map.getOrDefault(c,0) + 1);           // Put the characters in the T String in Hashmap; default with 0 if does not exist else increment the value by 1; O(m) time time complexity
         }
-        for(char c : S.toCharArray()){      // Iterate through the String S and whichever characters exist in the HashMap add it to the StringBuilder
+        for(char c : S.toCharArray()){      // Iterate through the String S and whichever characters exist in the HashMap add it to the StringBuilder which is O(n) time complexity operation
             if(map.containsKey(c)){
                 int count = map.get(c);     
                 while(count > 0){
