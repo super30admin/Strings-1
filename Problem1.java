@@ -1,5 +1,5 @@
 //TC - O(m + n)
-//SC - O(m + log(n))
+//SC - O(m + n)
 
 class Solution {
     
