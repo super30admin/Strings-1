@@ -1,6 +1,6 @@
 # Strings-1
 
-## Problem1 
+## Problem91
 Custom Sort String (https://leetcode.com/problems/custom-sort-string/)
 
 S and T are strings composed of lowercase letters. In S, no letter occurs more than once.
@@ -25,7 +25,7 @@ S has length at most 26, and no character is repeated in S.
 T has length at most 200.
 S and T consist of lowercase letters only.
 
-## Problem2 
+## Problem92
 
 Longest Substring Without Repeating Characters(https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 
