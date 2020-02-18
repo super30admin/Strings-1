@@ -3,7 +3,7 @@ class Solution:
         """
             https://leetcode.com/problems/longest-substring-without-repeating-characters/
             Time Complexity - O(n)
-            Space Complexity - O(n)
+            Space Complexity - O(1) # always 26 characters
             'n' is the length of the string 's'
             Explanation -
                 - If the current char is already in dictionary, it means

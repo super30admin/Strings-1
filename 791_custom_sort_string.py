@@ -6,7 +6,7 @@ class Solution:
         """
             https://leetcode.com/problems/custom-sort-string/
             Time Complexity - O(n)
-            Space Complexity - O(n)
+            Space Complexity - O(1) # always 26 characters
             'n' is the length of the string.
             Explanation -
                 - Add char -> count of String 'T'
