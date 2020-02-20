@@ -1,0 +1,32 @@
+//time: O(n)
+//space: O(m) where m is length of string in map
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+       Map<Character, Integer> map = new HashMap<>();
+        int slow=0;
+        int fast=0;
+        int res=0;
+        int count=1;
+        while(slow<s.length() && fast<s.length())
+        {
+            //check forward pointer
+            char c=s.charAt(fast);
+            //if map doesnt have it, put it start counter from 1
+           if(!map.containsKey(c))
+           {
+               map.put(c, count++);
+           }
+            //if exist ie duplicate found, then remove incremnet slow to new pos and incremnet value of that char to new pos
+           else
+            {
+               slow=Math.max(slow,map.get(c));
+               map.put(c, count++);
+            }
+            //in both case keep checking string length and incraese fast 
+            res=Math.max(res,fast-slow+1);
+            fast++;
+        }
+        return res;
+    }
+    
+}
