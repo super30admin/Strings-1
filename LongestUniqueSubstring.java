@@ -20,7 +20,7 @@ class Solution {
                 slow = Math.max(slow,map.get(ch));
                 fast++;
             }
-            map.getOrDefault(ch, fast + 1);
+            map.put(ch, fast + 1);
             fast++;
             max = Math.max(max, fast - slow + 1);
         }
