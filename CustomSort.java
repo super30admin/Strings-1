@@ -21,7 +21,8 @@ class Solution {
         }
         
         for(char m : tmap.keySet()){
-            ans.append(m);
+            for(int i = 0; i< tmap.get(m); i++)
+                ans.append(m);
         }
         
         return ans.toString();
