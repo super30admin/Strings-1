@@ -1,47 +1,47 @@
-// Time Complexity : nlogn
-// Space Complexity :logn
+// Time Complexity : n
+// Space Complexity :O(1)
 // Did this code successfully run on Leetcode :yes
 // Three line explanation of solution in plain english
 
 // Your code here along with comments explaining your approach
 class Solution {
+    StringBuilder sb = new StringBuilder();
     public String customSortString(String S, String T) {
-    if(S==null || S.length()==0 || T==null || T.length()==0){
-        String s =" ";
-        return s;
-    }   
-        Map<Character,Integer> map = new HashMap<>();
-        for(int i=0;i<S.length();i++){
-            map.put(S.charAt(i),i);
-        }
-       String s = "";
-        Comparator<Pair> customComparator = new Comparator<>(){
-        public int compare(Pair a, Pair b){
-            return a.val-b.val;
-        }            
-        };
-        PriorityQueue<Pair> minHeap = new PriorityQueue(customComparator);
+        if(S==null || S.length()==0 || T==null || T.length()==0) return "";
+        HashMap<Character,Integer> map = new HashMap<>();
+        
         for(int i=0;i<T.length();i++){
-            if(!map.containsKey(T.charAt(i))){
-                Pair p = new Pair(T.charAt(i),0);
-                minHeap.add(p);
+            if(map.containsKey(T.charAt(i))){
+                map.put(T.charAt(i),map.get(T.charAt(i))+1);
             }
             else{
-                minHeap.add(new Pair(T.charAt(i),map.get(T.charAt(i))));
+                map.put(T.charAt(i),1);
             }
         }
-        while(!minHeap.isEmpty()){
-            // sb.append(minHeap.poll().c)
-                s=s+minHeap.poll().c;
+        
+        for(int i=0;i<S.length();i++){
+           if(map.containsKey(S.charAt(i))){
+               StringMultiplier(sb,S.charAt(i),map.get(S.charAt(i)));
+               map.remove(S.charAt(i));
+           } 
+            
         }
-        return s;
+        for(Map.Entry element: map.entrySet()){
+            // sb.append(element.getKey());
+            char ch = element.getKey().toString().charAt(0);
+            int val = (Integer)element.getValue();
+            StringMultiplier(sb,ch,val);
+            
+        }
+        
+        return sb.toString();
     }
-}
-class Pair{
-    char c;
-    int val;
-    Pair(char c, int val){
-        this.c=c;
-        this.val=val;
+    
+    public void StringMultiplier(StringBuilder sb, char tmp, int val){
+        
+        while(val>0){
+         sb.append(tmp);
+         val--;   
+        }
     }
 }
