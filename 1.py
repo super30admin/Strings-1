@@ -1,3 +1,11 @@
+# Runs on Leetcode
+# Time: O(len(T) + len(S))
+# Space: O(len(T) + len(S))
+
+# Approach: Count all chars of T and then go through S and add char * freq to ans if it is present in T
+# After that check all chars of T and if they aren't present in S, add them to the end of the answer in
+# whatever order they appear
+
 class Solution:
     def customSortString(self, S: str, T: str) -> str:
         t_freq = {}
