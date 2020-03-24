@@ -1,3 +1,4 @@
+Brute Force:
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : None
 
@@ -30,4 +31,38 @@ class Solution(object):
                 i=-1
             i=i+1
         return max(maxi,c)
-        
+
+optimum solution:
+# TIme complexity --> o(n)
+# space complexity --> o(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : None
+
+
+// Your code here along with comments explaining your approach
+we use two pointers and set to solve this problem.we traverse through the string using two pointers start and end .we increment end pointer when we are at a unique element and we add the character element to the dictionary.if duplicate element is reached then we start to shrink the window using start pointer and remove it from the dictionary.The distance between start and end pointers gives the length of the longest substring with no repeating substrings.
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if s==None or len(s)==0:
+            return 0
+        start=0
+        end=0
+        count=0
+        d=set()
+        while end<len(s):
+            if s[end] not in d:
+                d.add(s[end])
+            else:
+                # print(start,end,d)
+                while s[end] in d:
+                    d.remove(s[start])
+                    start=start+1
+                continue
+            count=max(count,end-start+1)
+            end=end+1
+        return count
