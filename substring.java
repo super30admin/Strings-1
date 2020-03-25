@@ -1,11 +1,11 @@
-// Time Complexity :
-// Space Complexity :
-// Did this code successfully run on Leetcode : No
+// Time Complexity : O(N) N length of string. Iterating over the whole length of s. 
+// Space Complexity : O(1) haset will have atmost 26 characters
+// Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this :
 
 
 // Your code here along with comments explaining your approach:
-//Used hashset for keeping count of charcaters. However, unable to pass all testcases.
+//Used hashset for keeping count of characters. Use two pointers for window string.
 
 
 class Solution {
@@ -15,25 +15,22 @@ class Solution {
         
         HashSet<Character> set = new HashSet<>();
         
-        int count = 0;
-        int ans = 0;
+        int maxLen = 0;
         
-        for(int i=0; i<s.length(); i++){
-            char ch = s.charAt(i);
-            System.out.println(ch);
-            if(!set.contains(ch)){
-                set.add(ch);
-                count++;
-                System.out.println("am new: " + ch);
-                ans = Math.max(ans, count);
-            }else{
-                System.out.println("am there: restart" + ch);
-                set.clear();                
-                set.add(ch);
-                count = 1;
+        int start = 0, end = 0;
+        
+        while(end< s.length()){
+           char ch = s.charAt(end);
+            while(set.contains(ch)){
+                set.remove(s.charAt(start));
+                start++;
             }
+            
+            set.add(ch);
+            maxLen = Math.max(maxLen, end - start + 1);
+            end++;
         }
         
-        return ans;
+        return maxLen;
     }
 }
