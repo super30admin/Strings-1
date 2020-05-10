@@ -1,0 +1,39 @@
+Time complexity: O(m+n)
+Space complexity: O(n) -> size of map with T
+Did this code successfully submitted on leetcode: Yes
+
+
+class Solution {
+    public String customSortString(String S, String T) {
+        
+        StringBuilder sb = new StringBuilder();
+        
+        Map<Character, Integer> map = new HashMap<>();
+        
+        for(char c : T.toCharArray()){
+                map.put(c,map.getOrDefault(c,0)+1);
+        }
+        
+        for(char c : S.toCharArray()){
+            
+            if(map.containsKey(c)){
+                for(int i= 0; i<map.get(c); i++){
+                    sb.append(c);
+                }
+                map.remove(c);
+            }
+        }
+        
+        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+            int count = entry.getValue();
+            char ch = entry.getKey();
+            
+            for(int i= 0; i<count; i++){
+                    sb.append(ch);
+                }
+                //map.remove(ch);
+        }
+        
+        return sb.toString();
+    }
+}
