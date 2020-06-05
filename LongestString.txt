@@ -1,0 +1,31 @@
+// Time Complexity : 0(n) n  are length of given string
+// Space Complexity : 0(n) 
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        /* edge case */
+        if(  s == null || s.length == 0)
+            return 0;
+        
+        /* keep the track of last index of character */
+        HashMap<Character,Integer> hm = new HashMap<>();
+        int i = 0; //start pointer of unique string */
+        int length = 0;
+        for(int j = 0; j < s.length();j++){
+           
+            if(hm.containsKey(s.charAt(j)))
+            {
+                 i = Math.max(hm.get(s.charAt(j)),i);  // if charcater already visited in prev then  update the i
+                
+            }
+            
+            length = Math.max(length, j - i+1); // update length
+            
+            hm.put(s.charAt(j),j+1); // put last index of charcater
+        }
+        
+        return length; // return length
+    }
+}

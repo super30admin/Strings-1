@@ -1,0 +1,33 @@
+// Time Complexity : 0(max(n,m)) n & m are length of given string
+// Space Complexity : 0(26 + max(m)) m -length of string to be sorted
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+class Solution {
+    public String customSortString(String S, String T) {
+        /* edge case */
+        if(S == null || T == null || S.length == 0 || T.length == 0)
+            return T;
+        /* character array to keep count of charcater in String T*/
+        int[] count = new int[26];
+        
+        /* count of characrter in String T*/
+        for (char c : T.toCharArray()) 
+            ++count[c - 'a']; 
+        /* string builder to store result */
+        StringBuilder sb = new StringBuilder();
+        
+        /* iterate through string s and for respective character in T append to result */
+        for (char c : S.toCharArray()) {                            
+            while (count[c - 'a']-- > 0) 
+                sb.append(c);    
+        }
+        /* append the remaining character of string T*/
+        for (char c = 'a'; c <= 'z'; ++c) {
+            while (count[c - 'a']-- > 0) 
+                sb.append(c);   
+        }
+        
+        return sb.toString(); /* convert StringBuilder to string */
+    }
+}
