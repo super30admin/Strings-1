@@ -1,0 +1,46 @@
+Time: O(m+n) ; m is length of T and n is length of S
+Space: O(1)
+
+
+class Solution {
+	public String customSortString(String S, String T) {
+		//if(S== null || T==null || s.length() == 0 || T.length()==0) return  
+		StringBuilder sb = new StringBuilder();
+		HashMap<Character, Integer> map = new HashMap<>();
+		for(int i=0; i<T.length(); i++)
+		{
+			Character c = T.charAt(i);
+			map.put(c, map.getOrDefault(c,0) +1);
+		}
+
+		for(int i=0; i<S.length(); i++)
+		{
+			Character c = S.charAt(i);
+			if(map.containsKey(c))
+			{
+				int n = map.get(c);
+				while(n>0)
+				{
+					sb.append(c);
+					n--;
+				}
+				map.remove(c);
+			}
+
+		}
+
+		for(Map.Entry<Character, Integer> entry: map.entrySet())
+		{
+			int cnt = entry.getValue();
+			Character c = entry.getKey();
+
+			while(cnt > 0)
+			{
+				sb.append(c);
+				cnt--;
+			}
+
+		}
+		return sb.toString();
+	}
+}
