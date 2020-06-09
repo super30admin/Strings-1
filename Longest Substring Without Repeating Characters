@@ -1,0 +1,16 @@
+#Time Complexity- o(n)
+#Space Complexity- o(n)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        dict={}
+        slow=0
+        maximum=0
+        fast=0
+        for i in range(len(s)):
+            if s[i] in dict:
+                slow=max(slow,dict[s[i]])
+            dict[s[i]]=i+1
+            maximum=max(maximum,i-slow+1)
+        return maximum
+            
+                
