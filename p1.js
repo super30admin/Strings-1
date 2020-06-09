@@ -1,6 +1,10 @@
 // ## Problem1 
 // Custom Sort String (https://leetcode.com/problems/custom-sort-string/)
 
+// Time Complexity : O(N x count)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+
 const customSortString = function(S, T) {
     let map = new Map(), res = '';
     for(let c of T) {
