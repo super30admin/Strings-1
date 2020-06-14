@@ -1,0 +1,68 @@
+PROBLEM 1 - Custome Sort String
+// Time Complexity :O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :Yes
+
+class Solution {
+    func customSortString(_ S: String, _ T: String) -> String {
+        
+        var output = ""
+        
+        // Create a dictionary of T stating the characters and the amount of items
+        var dict = [Character: Int]()
+        for char in T {
+            dict[char] = (dict[char] ?? 0) + 1
+        }
+        
+        // iterate through S and decrement the amount letters in the dictionary
+        for char in S {
+            if let value = dict[char] {
+                // make sure to iterate though all instances of that specific character
+                for _ in 0..<value {
+                    output.append(char)
+                }
+                dict[char] = 0
+            }
+        }
+        //append the remaining items in the dictionary into the output
+        for (key, value) in dict {
+            for _ in 0..<value {
+                output.append(key)
+            }
+        }
+        return output
+    }
+}
+
+
+
+PROBLEM 2 - Longest Substring
+// Time Complexity :O(n*2)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :Yes
+
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        var s = Array(s)
+        
+        var recent = [Character: Int]()
+        var longest = 0
+        var result = 0
+        
+        for index in s.indices {
+            longest += 1
+            var c = s[index]
+            if let prev = recent[c] {
+                var back = (index - prev)
+                if back < longest {
+                    longest = back
+                }
+            }
+            recent[c] = index
+            if longest > result {
+                result = longest
+            }
+        }
+        return result
+    }
+}
