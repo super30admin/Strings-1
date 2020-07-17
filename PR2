@@ -1,0 +1,50 @@
+// Time Complexity : O(n) where n is the number of elements in the string.
+// Space Complexity : O(26)- hashmap can have atmost 26 charcter keys.
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Yes, Difficulty understanding the approach in the beginning.
+// Your code here along with comments explaining your approach: The approach is to use a hmap for character,index pairs. We calculate the length at every point and compare it with the max. If we encounter a duplicate, we immediately change our start length of the string(slow) to that value and also put that value corresponding to the duplicate character. Sliding window with HashMap approach.
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s==null ||s.length()==0) return 0;
+        int max=0;int slow=0;int fast=0;
+        Map<Character,Integer> hmap=new HashMap<>();
+       while(fast<s.length()){
+           if(hmap.containsKey(s.charAt(fast))){
+               slow=Math.max(slow,hmap.get(s.charAt(fast)));
+               }
+           hmap.put(s.charAt(fast),fast+1); //(to handle this here also we )
+           max=Math.max(fast-slow+1,max);
+            //this +1 is for the ideal case where there are no duplicates
+           fast++;
+           }
+        return max;
+       }
+}
+
+// Time Complexity : O(n*n) - where n is the number of elements in the string.
+// Space Complexity : O(26) - hashset.
+// Did this code successfully run on Leetcode : No. Brute force. hence, time limit exceeds.
+// Any problem you faced while coding this : No
+// Your code here along with comments explaining your approach: Brute Force approach. for each i, we visit all j values from i+1 to n to get the max length if the string is unique.
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int max=0;
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<=s.length();j++){
+                if(isUnique(s,i,j))
+                    max=Math.max(max,j-i);
+            }
+        }
+        return max;
+    }
+    public boolean isUnique(String s,int start,int end){
+        Set<Character> hset=new HashSet<>();
+        for(int i=start;i<end;i++){
+            if(hset.contains(s.charAt(i))) return false;
+            hset.add(s.charAt(i));
+        }
+        return true;
+     }
+}
