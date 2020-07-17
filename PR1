@@ -1,0 +1,38 @@
+// Time Complexity : O(m) - where m is the length of T.
+// Space Complexity : O(26) - maximum number of keys possible.
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Yes. I was initially confused. I generally tend to get a little stuck while writing code because I tend to not think clearly before. The question said one permutation, I failed to think in that perspective.
+// Your code here along with comments explaining your approach: Store all the charaters from the T string to a hashmap with their counts. For each character in S, append all the charcters occurences (based on counts in T stored in the hashmap) to the String Builder one by one. Remove the keys, once the count hits zero. At the end for any remaining entries in the hashmap, append it to the sb and return the String.
+class Solution {
+    public String customSortString(String S, String T) {
+        StringBuilder sb=new StringBuilder();
+        Map<Character,Integer> hmap=new HashMap<>();
+        for(int i=0;i<T.length();i++){
+            char t=T.charAt(i);
+            hmap.put(t,hmap.getOrDefault(t,0)+1);
+        }
+        for(Map.Entry<Character,Integer> entry: hmap.entrySet()){
+            System.out.println(entry.getKey() + " :  " +entry.getValue() );
+        }
+        for(int i=0;i<S.length();i++){
+            char s= S.charAt(i);
+            if(hmap.containsKey(s)){
+                int c=hmap.get(s);
+                while(c>0){
+                    sb.append(s);
+                    c--;
+                }
+                hmap.remove(s);
+            }
+        }
+        for(Map.Entry<Character,Integer> entry: hmap.entrySet()){
+            char ch=entry.getKey();
+            int ce=entry.getValue();
+            while(ce>0){
+                 sb.append(ch);
+                  ce--;
+            }
+        }
+        return sb.toString();
+    }
+}
