@@ -1,3 +1,5 @@
+//Time Comp: O(N)
+//Space Comp: O(1)
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
