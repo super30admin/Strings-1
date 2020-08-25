@@ -1,0 +1,33 @@
+Time Complexity : O(len(s)=26 charcaters+len(T)) --- O(n)
+Space Complexity :O(1) - To store 26 characters in hashmap
+class Solution {
+    public String customSortString(String S, String T) {
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<T.length();i++){
+            char c = T.charAt(i);
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i=0;i<S.length();i++){
+            char ch = S.charAt(i);
+            if(map.containsKey(ch)){
+                int cnt=map.get(ch);
+                while(cnt>0){
+                    sb.append(ch);
+                    cnt--;                    
+                }
+                map.remove(ch);
+            }
+            
+        }
+        
+        for (char key:map.keySet()){
+            int cnt=map.get(key);
+            while(cnt>0){
+                    sb.append(key);
+                    cnt--;                    
+                }
+        }
+        return sb.toString();
+    }
+}
