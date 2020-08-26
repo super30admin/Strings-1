@@ -1,3 +1,5 @@
+//TC: O(m), m: length of T[]
+//SC: O(1)
 class Solution {
     public String customSortString(String S, String T) {
         Map<Character, Integer> strMap = new HashMap();
