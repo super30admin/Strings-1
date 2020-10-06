@@ -1,0 +1,30 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0){
+            return 0;
+        }
+        int start = 0;
+        int end = 0;
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        int max = Integer.MIN_VALUE;
+        
+        while( end < s.length()){
+            char ch = s.charAt(end);
+            if(map.containsKey(ch)){
+                // handles the condition where we dont need to move start. backwards
+                //e.g zbxybcbza
+                start = Math.max(start, map.get(ch));
+            }
+            
+            // In any case(new/repeating char) update the map with position
+            map.put(ch, end + 1);
+            
+            max =  Math.max( max, end - start + 1);
+                        
+            end += 1;
+        }
+        
+        return max;
+    }
+}
