@@ -1,3 +1,8 @@
+// Approach: Use sliding window technique to get the longest substring
+//Use hashmap to maintain {ch, index to be on once we find a repeat element}
+// Time: O(N)
+//Space: O(N) // if initialize for 26 character for hasmap it would be O(1)
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s == null || s.length() == 0){
