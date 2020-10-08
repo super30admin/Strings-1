@@ -1,6 +1,5 @@
 // Time Complexity : O(n) to traverse the characters in both the strings
 // Space Complexity : O(n) number of characters in string T
-// and in worst case it can reach the total number of intervals.
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
