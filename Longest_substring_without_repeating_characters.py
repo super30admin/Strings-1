@@ -5,16 +5,23 @@
 
 
 class Solution:
-    def myPow(self, x: float, n: int) -> float:
+    def lengthOfLongestSubstring(self, s: str) -> int:
         
-        if n == 0: 
-            return 1
-        if n < 0:
-            return 1/self.myPow(x, -n)
+        hashset = set()
+        result = 0
+        i = 0
+        j = 0
         
-        lower = self.myPow(x, n//2)
-        if n % 2 == 0:
-            return lower*lower
-        else: 
-            return lower*lower*x
+        
+        while i < len(s) :
+            if s[i] not in hashset:
+                hashset.add(s[i])
+                i += 1
+                
+            else:
+                hashset.remove(s[j])
+                j += 1
+            result = max(result, i-j)
+            
+        return result
     
