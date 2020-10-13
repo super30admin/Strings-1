@@ -1,0 +1,27 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if s == None or len(s) == 0:
+            return 0
+        elements = {}
+        max_length = float('-inf')
+        
+        S = 0
+        E = 0
+        
+        while E < len(s):
+            ch = s[E]
+            if ch in elements:
+                S = max(S, elements[ch])
+            elements[ch] = E + 1
+            max_length = max(max_length, E - S + 1)
+            
+            E += 1
+        
+        return max_length
+
+#timeComplexity: o(n)
+#spaceComplexity: o(n)
