@@ -1,0 +1,25 @@
+// Time complexity: O(N) : length of string
+// space complexity: size of set : worst case : O(N)
+// In this question, we always keep track of size of longest substring encountered while we add into hashmap : for more general case i.e. when we find unique elements -> soince in question we need to fing the length of longest nonrepeating caharcters of string
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+      HashSet<Character> set = new HashSet<>();
+        int max = 0;
+        if(s == null || s.length() == 0) return max;
+        int i = 0;
+        int j = 0;
+        
+        while(j < s.length() && i < s.length()) {
+            if(!set.contains(s.charAt(j))){
+                set.add(s.charAt(j));
+                max = Math.max(max, j-i+1);
+                j++;
+            }
+            else if(set.contains(s.charAt(j))){
+                set.remove(s.charAt(i));
+                i++;
+            }
+        }
+        return max;
+    }
+}
