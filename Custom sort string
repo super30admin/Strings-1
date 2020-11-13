@@ -1,0 +1,35 @@
+// string T in order of S
+// time complexity : O(T+S)
+// space complexity: O(T)
+class Solution {
+    public String customSortString(String S, String T) {
+        // create the string for T in the order of charcters of S 
+        StringBuilder output = new StringBuilder();
+        HashMap<Character, Integer> map = new HashMap<>();
+        // add characters of T with their frequency in hashmap
+        for(char ch : T.toCharArray()){
+            map.put(ch, map.getOrDefault(ch, 0)+1);
+        }
+        
+        for(char ch : S.toCharArray()){
+            if(map.containsKey(ch)){
+                int freq = map.get(ch);
+                while(freq > 0){
+                output.append(ch);
+                freq--;
+            }
+                map.remove(ch);
+            }
+        }
+        
+        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+            char ch = entry.getKey();
+            int freq = entry.getValue();
+            while(freq > 0){
+                output.append(ch);
+                freq--;
+            }
+        } 
+        return output.toString();
+    }
+}
