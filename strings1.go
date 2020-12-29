@@ -4,4 +4,6 @@ func main() {
 	MainCustomSort()
 
 	MainLengthOfLongestSubstring()
+
+	maintest()
 }
