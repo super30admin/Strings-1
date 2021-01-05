@@ -1,5 +1,5 @@
 // Time - O(N)
-// Space - O(N)
+// Space - O(1)
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
