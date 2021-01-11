@@ -1,0 +1,33 @@
+//Tc: O(S + T)
+//Sc: O(1) -> hashMap 26 chars?
+
+class Solution {
+    public String customSortString(String S, String T) {
+        if(S==null || S.length()==0 || T==null || T.length()==0){
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        HashMap<Character,Integer> hmap = new HashMap<>();
+        for(Character c : T.toCharArray()){
+            hmap.put(c, hmap.getOrDefault(c,0)+1);
+        }
+        // System.out.println(hmap);
+        for(Character ch : S.toCharArray()){
+            if(hmap.containsKey(ch)){
+                while(hmap.get(ch) > 0){
+                    sb.append(ch);
+                    hmap.put(ch, hmap.get(ch)-1);
+                }
+            }
+        }
+        // System.out.println(hmap);
+        for(Character c : hmap.keySet()){
+            while(hmap.get(c)>0){
+                sb.append(c);
+                hmap.put(c, hmap.get(c)-1);
+            }
+        }
+        return sb.toString();
+    }
+}
