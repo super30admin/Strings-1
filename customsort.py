@@ -8,9 +8,9 @@ class Solution:
     
     Approach:
     - Create a hashmap with count of occurance of every letter in string T
-    - Iterate through S and append letters in same order for each count
-    - Iterate a fixed for loop with 26 small letters to check if the element is present in hashmap
-      + add elements in resulting list successively
+    - Iterate through S and append letters in same order for each count, drop the key from hashmap
+    - Iterate a fixed for loop with remaining keys in the hash table and use similar to above to add elements
+    - combine all using "".join
     """
     
     def customSortString(self, S: str, T: str) -> str:
@@ -23,19 +23,18 @@ class Solution:
             else: str_dict[c] = 1
             
         result = []
-        for i, c in enumerate(S):
+        for c in S:
             if c in str_dict:
                 count = str_dict[c]
                 while count > 0:
                     result.append(c)
                     count -= 1
+                str_dict.pop(c)
                     
-        for i in range(97, 123):
-            c = chr(i)
-            if c in str_dict and not c in result:
-                count = str_dict[c]
-                while count > 0:
-                    result.append(c)
-                    count -= 1
+        for c in str_dict.keys():
+            count = str_dict[c]
+            while count > 0:
+                result.append(c)
+                count -= 1
         
         return "".join(result)
