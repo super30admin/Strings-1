@@ -1,0 +1,43 @@
+/**
+* Time complexity = O(m+n) where m=length of T and n is length of S. 
+* Space complexity = O(m) where m is length of result StringBuilder that we are creating to form resulting string.
+**/
+
+
+class Solution {
+    
+    public String customSortString(String S, String T) {
+        
+        StringBuilder result=new StringBuilder();
+        if(T==null || T.length()==0) return result.toString();
+        
+        HashMap<Character,Integer> map=new HashMap();
+        
+        for(int index=0; index<T.length();index++){
+            char c=T.charAt(index);
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        
+        for(int index=0; index<S.length();index++){
+            char c=S.charAt(index);
+            if(map.containsKey(c)){
+                int count=map.get(c);
+                while(count>0){
+                    result.append(c);
+                    count--;
+                }
+                map.remove(c);
+            }
+        }
+        
+        for(char c:map.keySet()){
+            int count=map.get(c);
+            while(count>0){
+                result.append(c);
+                count--;
+            }
+        }
+        
+        return result.toString();
+    }
+}
