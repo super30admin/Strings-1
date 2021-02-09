@@ -1,5 +1,5 @@
 #time: O(n)
-#space: O(m) where m no of unique characters in the string
+#space: O(1) as the size of hashmap can be at maximum a constant(total no of characters in English) 
 
 #hashmap approach
 class Solution:
