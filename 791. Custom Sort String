@@ -1,0 +1,30 @@
+from collections import defaultdict
+class Solution:
+    def customSortString(self, S: str, T: str) -> str:
+        # initialize a character freq dictionary of T
+        dict1 = defaultdict(int);
+        # iterate throguh string T and find the frequency of each character
+        for char in T:
+            dict1[char] += 1;
+        
+        #print(dict1.items())
+        result = ''
+        # iterate through String S and check whether that character exists in dict1
+        for char in S:
+            if(char in dict1):
+                # append the char to the resulting string frequency number of times
+                result += char*dict1[char];
+                # then remove the character from dict
+                dict1.pop(char);
+        #print(dict1.items())
+        # append the remaining characters of dict1 to the result string
+        for k,v in dict1.items():
+            result += k*dict1[k];
+        return result;
+    '''
+    m = len(T), n = len(S)
+    time complexity = O(m + n);
+    space complexity = O(m)
+    '''
+        
+        
