@@ -1,0 +1,27 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # initialize two pointers
+        i,j = 0, 0;
+        # initilize hashset
+        hashset = set();
+        n = len(s)
+        # initialize varible maxi to store the longest substring without repeating characters
+        maxi = 0
+        while(j < n):
+            # remove the character at i, until character at j is present in the hashset
+            while(s[j] in hashset and j < n):
+                hashset.remove(s[i]);
+                i += 1;
+            hashset.add(s[j]);
+            # update the lengtth of the result
+            maxi = max(maxi, j - i + 1);
+            j += 1;
+        return maxi;
+    
+    '''
+    n = legnth of the string
+    time complexity = O(n)
+    space complexity = O(n)
+    '''
+            
+        
