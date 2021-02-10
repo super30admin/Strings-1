@@ -1,4 +1,4 @@
-# Time: O(N)
+ 
 # Space O(1) we will be storing only max of 26 char in dictionary
 # Did this code successfully run on Leetcode : Yes
 # Any problem you faced while coding this : No
