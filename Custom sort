@@ -1,0 +1,34 @@
+class Solution {
+    public String customSortString(String S, String T) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i=0;i<T.length();i++){
+            map.put(T.charAt(i), map.getOrDefault(T.charAt(i),0)+1);
+        }
+        System.out.println(map);
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<S.length();i++){
+            if(map.containsKey(S.charAt(i))){
+            int k= map.get(S.charAt(i));
+            while(k>0){
+                sb.append(S.charAt(i));
+                k--;
+            }
+                map.remove(S.charAt(i));
+            }
+            
+        }
+        for(char c: map.keySet()){
+            int k= map.get(c);
+            while(k>0){
+                sb.append(c);
+                k--;
+            }
+            
+        }
+        return sb.toString();
+    }
+}
+
+// Time complexity: O(m+n)
+//Space Complexity: O(m)
+//Approach: store count of each char in hashmap and append to strung builder using the new sorting sequence from the hashmap
