@@ -1,0 +1,26 @@
+//TC - O(n)
+//SC - o(n)
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+       
+        if(s == null || s.length() == 0) return 0;
+        
+        //character and its next index
+        //next bcs from the next index we will be calculating length
+        HashMap<Character,Integer> map = new HashMap<>();
+        int max = 0,start=0;
+        for(int i = 0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if(map.containsKey(c)) {
+                //need to consider max bcs may many more characters are repeating before the 
+                //last occurence of this char
+                start = Math.max(map.get(c),start);
+            } 
+            //next index
+            map.put(c,i+1);
+            //store and return max of all of them
+            max = Math.max(max,(i-start+1));
+        }
+        return max;
+    }
+}
