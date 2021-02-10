@@ -15,7 +15,7 @@ class LengthOfLongestSubstring {
     4. reset curr = 0 when you encounter repeated char.
 */
     
-    public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstringBF(String s) {
         if(s == null ) return 0;
         if(s.length() <= 1) return s.length();
         
@@ -33,6 +33,32 @@ class LengthOfLongestSubstring {
                 hashMap.clear();
             }
             max = Math.max(max, curr);
+        }
+        
+        return max;
+    }
+    
+    // Sliding window. In prev approach I was resetting i which makes algorith O(N^2) to avoid this move your slow and keep i as fast pointer.
+    /*
+        Time  : O(N) | N - length of the string 
+        Space : O(N) | hashMap extra space.
+    */
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null ) return 0;
+        if(s.length() <= 1) return s.length();
+        
+        HashMap<Character,Integer> hashMap = new HashMap<>();
+        int max = 0;
+        int slow = 0;
+        for(int i=0; i < s.length();i++){
+            char c = s.charAt(i);
+            
+            if(hashMap.containsKey(c)){
+                slow = Math.max(slow, hashMap.get(c));
+            }
+            
+            hashMap.put(c, i+1);
+            max = Math.max(max, i - slow + 1);
         }
         
         return max;
