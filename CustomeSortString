@@ -1,0 +1,48 @@
+//TC - o(m+n)
+//SC - o(m)
+class Solution {
+    public String customSortString(String S, String T) {
+        
+        if(T == null || T.length() == 0)
+            return T;
+        
+        //store all characters of T with counts
+        //consider o(1)
+        HashMap<Character,Integer> map = new HashMap<>();
+        //stringbuilder return result - o(m)
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i =0; i<T.length();i++){
+            char c = T.charAt(i);
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        //append all the characters of the S string to result based on the order
+        for(int i=0;i<S.length();i++){
+            char ch = S.charAt(i);
+            if(map.containsKey(ch)){
+                int count = map.get(ch);
+                while(count>0){
+                    sb.append(ch);
+                    count--;
+                }
+                //remove the ch after appending all of them
+                map.remove(ch);
+            }
+        }
+        
+        //traverse the map 
+        //s is key
+        //remember cannot remove the key pair after adding as we are traversing the key set
+        //else it will through concurrent modification exception 
+        for(char s: map.keySet()){
+            //get counts and append
+            int co = map.get(s);
+            while(co>0){
+                sb.append(s);
+                co--;
+            }
+        }
+        
+       return sb.toString(); 
+    }
+}
