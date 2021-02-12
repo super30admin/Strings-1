@@ -1,0 +1,38 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        //3. Longest Substring Without Repeating Characters
+        //Using hashSet
+        //Time complexity : O(n) where n is the length of the string
+        //Space is : O(1)
+        
+        HashSet<Character> set = new HashSet<>();
+        int max = 0;
+        int j=0;
+        
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+           
+            if(!set.contains(ch)){
+                set.add(ch);
+                max = Math.max(max,set.size());
+            }
+            
+            else {
+                while(j<i){
+                    if(ch == s.charAt(j)){
+                    j++;
+                    break;
+                }
+                set.remove(s.charAt(j));
+                j++;
+                    
+                }
+               
+            }
+          
+            
+        }
+           return max; 
+    }
+}

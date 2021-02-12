@@ -1,0 +1,46 @@
+class Solution {
+    public String customSortString(String S, String T) {
+        
+        //791. Custom Sort String
+        //Time complexity is : O(m+n) where m is the length of string S and n is the length of string T
+        //Space compelxity : O(1) //we are storing  charachters of string T in the hashmap.
+        StringBuilder sb = new StringBuilder();
+        if(T == null || T.length() ==0)
+            return sb.toString();
+        
+        
+        HashMap<Character,Integer> map = new HashMap<>();
+        
+        
+        for(int i =0;i<T.length();i++){
+            char c = T.charAt(i);
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+        
+        for(int i =0;i<S.length();i++){
+            char ch = S.charAt(i);
+            
+            if(map.containsKey(ch)){
+                int count = map.get(ch);
+                while(count>0){
+                    sb.append(ch);
+                    count--; 
+                }
+                map.remove(ch);
+               
+            }
+        }
+        
+        for(Map.Entry<Character,Integer> entry : map.entrySet()){
+            char c = entry.getKey();
+            int count = entry.getValue();
+            while(count>0){
+                sb.append(c);
+                count--;
+            }
+            
+        }
+        return sb.toString();
+        
+    }
+}
