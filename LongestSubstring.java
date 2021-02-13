@@ -8,7 +8,11 @@
   TC: O(n^3) because first making pairs and then for each pair again traversing the whole string for validating unique characters
   SC: O(k), because of unique characters in the set
   
-  2) Optimal : TC: O(N) |SC:O(N);
+  2) Optimal : 
+               TC: O(N) |SC:O(N);
+               //Using sliding window put each chararacter in map along with index+1, because if we found the same character we have to escape it or jump or move our start pointer next to the found character in the map.
+               
+               TC: O(N) |SC:O(N);
                Using two pointers and HashMap
                1) Initialise two pointers which are slow and fast pointer. Iterate over the string with the fast pointer. Add the character and its index in the the hash map, if they are not in the hashmap. 
                If they are in the hashmap just check the index of that character. If that character index is equal or greater than the slow pointer index, just calculate the length of that window and increment the slow pointer with 1, as well as remove that character from the map. 
@@ -26,9 +30,43 @@ class Solution94 {
         
         if(s==null || s.length()==0) return 0;
         
+       //Class Solution--Use this
+       //Using sliding window put each chararacter in map along with index+1, because if we found the same character we have to escape it or jump or move our start pointer next to the found character in the map.
         
         //TC: O(N) |SC:O(N);
         Map<Character,Integer> map = new HashMap<>();
+        int maxLen = Integer.MIN_VALUE;
+        int winStart =0;
+        StringBuilder sb = new StringBuilder();
+        for(int winEnd=0;winEnd<s.length();winEnd++){
+        
+           char ch = s.charAt(winEnd);
+           
+
+            if(map.containsKey(ch)){//for moving start pointer
+               //move start pointer
+                winStart = Math.max(winStart,map.get(ch));//here can be a case when our start pointer has crossed the index of the currently matched character. Eg: zabcbxyblz
+                
+            }
+            //If max string required
+            if(winEnd-winStart+1>maxLen){
+                sb.setLength(0);
+                sb.append(s.substring(winStart,winEnd+1));
+            }
+            
+            
+            maxLen = Math.max(maxLen,winEnd-winStart+1);
+            map.put(ch,winEnd+1);
+        
+        }
+        System.out.println(sb);
+        return maxLen;
+
+
+
+        
+        //TC: O(N) |SC:O(N);
+       /* Map<Character,Integer> map = new HashMap<>();
         int maxLen = Integer.MIN_VALUE;
         int winStart =0;
         int len =0;
@@ -52,7 +90,7 @@ class Solution94 {
             maxLen = Math.max(maxLen,len);
         }
         
-        return maxLen==Integer.MIN_VALUE ? 1:maxLen;
+        return maxLen==Integer.MIN_VALUE ? 1:maxLen;*/
         
         
         
