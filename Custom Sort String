@@ -1,0 +1,31 @@
+class Solution {
+    public String customSortString(String S, String T) {
+        StringBuilder sb = new StringBuilder();
+        HashMap<Character, Integer> hmap = new HashMap<>();
+        for(char ch : T.toCharArray()){
+            hmap.put(ch,hmap.getOrDefault(ch,0)+1);
+        }
+        for(char ch : S.toCharArray()){
+            if(hmap.containsKey(ch)){
+                int count = hmap.get(ch);
+                while(count !=0){
+                    sb.append(ch);
+                    count -=1;
+                }
+                hmap.remove(ch);
+            }
+        }
+        for(Character ch : hmap.keySet()){
+            //char ch = en.getKey();
+            int count = hmap.get(ch);
+            while(count !=0){
+                sb.append(ch);
+                count -=1;
+            }
+        }
+        return sb.toString();
+    }
+}
+
+// Time Complexity : O(n)
+//Space Complexity : O(n)
