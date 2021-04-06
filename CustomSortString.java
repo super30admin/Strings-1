@@ -1,6 +1,6 @@
 class CustomSortString {
 
-    // Time Complexity: O(nm)   (where n -> len(S) and m -> len(T))
+    // Time Complexity: O(n + m)   (where n -> len(S) and m -> len(T))
     // Space Complexity: O(1)   (since t_arr --> would always be of length 26, also if output string does not count as extra space)
 
     public String customSortString(String S, String T) {
