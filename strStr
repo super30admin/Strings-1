@@ -1,7 +1,82 @@
-// Time Complexity :
-// Space Complexity :
+// Time Complexity :O(needle.length + haystack.length)
+// Space Complexity : O(needle.length)
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
-
+KMP logic
 
 // Your code here along with comments explaining your approach
+class Solution {
+    public int strStr(String haystack, String needle) {
+        
+        if(needle == null || needle.length() ==0)
+            return 0;
+        
+        int[] lps = lps(needle);
+       
+        int i =0;
+        int j=0;
+        
+        while( i < haystack.length())
+        {
+            if(haystack.charAt(i) == needle.charAt(j))
+            {
+                i++;
+                j++;
+                
+                if(j == needle.length())
+                    return i - needle.length();
+            }
+           else
+           {
+               if(j==0)
+               {
+                   j =0;
+                   i++;
+               }
+               if(j > 0)
+               {
+                   j = lps[j-1];
+               }
+           }
+        }
+        int index = i - needle.length();
+        System.out.println(index);
+       
+       return -1;
+    }
+    
+    private int[] lps( String needle)
+    {
+        int[] result = new int[needle.length()];
+        
+        int i = 1;
+        int j =0 ;
+        result[0] = 0;
+        
+        while(i < needle.length())
+        {
+            if(needle.charAt(i) == needle.charAt(j))
+            {
+                j++;
+                result[i] = j;
+                i++;
+            }
+            else
+            {
+                if(j== 0)
+                {
+                    result[i] =0;
+                    i++;
+                }
+                else if(j > 0)
+                {
+                    j = result[j-1];
+                    
+                }
+            }
+             
+        }
+        
+        return result;
+    }
+}
