@@ -1,0 +1,19 @@
+#TC- o(m+n) m= len(s) and n =len(t)
+#SC- O(1) constant space
+class Solution:
+    def customSortString(self, S: str, T: str) -> str:
+        dict={}
+        res=""
+        for i in T:
+            if i in dict:
+                dict[i]+=1
+            else:
+                dict[i]=1
+        for j in S:
+            if j in dict:
+                res+=j * dict[j]
+                del dict[j]
+        for key,values in dict.items():
+            res+=key* values
+        return res
+        
