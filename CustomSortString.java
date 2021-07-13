@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class CustomSortString {
@@ -42,10 +44,51 @@ public class CustomSortString {
                 replacement += c;
 
         }
-
-
         return replacement;
+    }
 
 
+    /*
+    TC : O(n+mlogm) where n is the length of order string and m is the length of str string
+    SC :O(1)
+    LC: yes
+    Problems : No
+    
+     */
+
+    /**
+     * Here we override the compare method and write a custom sort based on the indices of the characters given in order
+     *
+     * @param order
+     * @param str
+     * @return
+     */
+
+    public String customSortString_usingCustomSort(String order, String str) {
+
+        int[] sortedOrder = new int[26];
+        for (int i = 0; i < order.length(); ++i) {
+            sortedOrder[order.charAt(i) - 'a'] = i;
+        }
+
+
+        Character[] arr = new Character[str.length()];
+        for (int i = 0; i < str.length(); ++i)
+            arr[i] = str.charAt(i);
+
+        // sort the above array with respect to index of characters of String order
+        Arrays.sort(arr, new Comparator<Character>() {
+            @Override
+            public int compare(Character c1, Character c2) {
+                return Integer.compare(sortedOrder[c1 - 'a'], sortedOrder[c2 - 'a']);
+            }
+        });
+
+
+        StringBuilder sb = new StringBuilder(arr.length);
+        for (Character c : arr)
+            sb.append(c.charValue());
+
+        return sb.toString();
     }
 }
