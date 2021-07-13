@@ -1,4 +1,4 @@
-//O(n)+O(n), TC, SC
+//O(n)+O(1), TC, SC
 class Solution {
 public:
 	int lengthOfLongestSubstring(string s) 
