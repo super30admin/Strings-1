@@ -1,11 +1,15 @@
 //Time Complexity : O(n), n -> Length of String 
-// Space Complexity : O(1), No matter what the string length is, we have one array of size 128.
+// Space Complexity : O(1), No matter what the string length is, max length of map is constant
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 package problem2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LongestUniqueSubstring {
-	public int lengthOfLongestSubstring(String s) {
+	/********************* TwoPass *********************/
+	public int lengthOfLongestSubstringArray(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
 		}
@@ -27,6 +31,31 @@ public class LongestUniqueSubstring {
 			ans = Math.max(right - left + 1, ans);
 			right++;
 		}
+		return ans;
+	}
+
+	/********************* OnePass *********************/
+	public int lengthOfLongestSubstring(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
+		int ans = 0;
+		int ptr = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+			char ch = s.charAt(i);
+			// Update start pointer of sliding window
+			if (map.containsKey(ch)) {
+				ptr = Math.max(ptr, map.get(ch));
+			}
+			// Update index
+			map.put(ch, i + 1);
+			// Update max length
+			ans = Math.max(ans, i - ptr + 1);
+		}
+
 		return ans;
 	}
 
