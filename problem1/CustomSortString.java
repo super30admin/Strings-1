@@ -1,5 +1,5 @@
 //Time Complexity : O(max(m,n)), m -> Length of order, n -> Length of String 
-// Space Complexity : O(1)
+// Space Complexity : O(n), n -> Length of StringBuilder
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 package problem1;
