@@ -18,12 +18,12 @@
     -> else store the position 
 */
 
-
+import java.util.*;
 public class LongestSubstringWithoutRepeatingCharacters {
     
     public int lengthOfLongestSubstring(String s) {
        
-        Map<Character,Integer> map = new HashMap();
+        Map<Character,Integer> map = new HashMap<>();
         
         int slow =0;
         int maxLen = Integer.MIN_VALUE;
