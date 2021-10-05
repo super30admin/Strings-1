@@ -1,3 +1,13 @@
+# // Time Complexity :O(m+n)
+# // Space Complexity :O(1), 26 characters stored in hashmap max
+# // Did this code successfully run on Leetcode :yes
+# // Any problem you faced while coding this :no
+
+
+# // Your code here along with comments explaining your approach
+
+
+
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
         hmap={}
