@@ -1,0 +1,27 @@
+Solution - sliding window
+// TC - O(n) where n - length of s
+// SC - O(1)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length() == 0 || s == null)
+            return 0;
+        
+        int start = 0, end = 0, result = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        while(end < s.length())
+        {
+            if(map.containsKey(s.charAt(end)))
+            {
+                start = Math.max(start, map.get(s.charAt(end)));
+            }
+            map.put(s.charAt(end), end + 1);
+            result = Math.max(result, end - start + 1);
+            end++;
+        }
+        
+        return result;
+    }
+}
+
