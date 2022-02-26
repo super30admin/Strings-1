@@ -1,0 +1,37 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        
+        if(order == null || s== null || order.length() == 0 || s.length() ==0)
+            return null;
+        
+        StringBuilder perm = new StringBuilder();
+        
+        HashMap<Character,Integer> countMap = new HashMap<>();
+        
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            countMap.put(c,countMap.getOrDefault(c,0)+1);
+        }
+        
+        for(int i=0;i<order.length();i++){
+            char c = order.charAt(i);
+            
+            if(countMap.containsKey(c)){
+                int count = countMap.get(c);
+                for(int k=0;k<count;k++){
+                    perm.append(c);
+                }
+                countMap.remove(c);
+            }
+        }
+        
+        for(char c : countMap.keySet()){
+            int count = countMap.get(c);
+                for(int k=0;k<count;k++){
+                    perm.append(c);
+                }
+                 
+        }
+        return perm.toString();
+    }
+}
