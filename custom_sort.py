@@ -1,4 +1,4 @@
-#time complexity : o(m+n) where m = length of order and n = length of s
+#time complexity : o max(m,n) where m = length of order and n = length of s
 #space complexit: o(1) since hashmap will consume space of max 26 letters
 
 from collections import Counter
