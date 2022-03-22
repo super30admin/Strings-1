@@ -1,3 +1,6 @@
+#time complexity : o(n)
+#space complexity: O(1)
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         hmap = {}
