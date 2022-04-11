@@ -1,0 +1,32 @@
+//TC = O(m+n) -> O(n) : since m is 26
+//SC = O(m) -> O(1) : since m is 26
+//The idea is to put order in map with their's indexes then make a result list and add characters of s in list 
+class Solution {
+    public String customSortString(String order, String s) {
+        
+        Map<Character, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i<order.length(); i++){
+            map.put(order.charAt(i), i+1);
+        }
+        
+        //creating string to list just for sorting
+        List<Character> list = new ArrayList<>();
+        for(int i=0; i<s.length(); i++){
+            list.add(s.charAt(i));
+        }
+        
+        Collections.sort(list, (a,b) -> {
+            return map.getOrDefault(a, 0) - map.getOrDefault(b, 0);
+        });
+        
+        //creating string from list
+        StringBuilder res = new StringBuilder();
+        for(int i=0; i < list.size(); i++){
+            res.append(list.get(i));
+        }
+        
+        return res.toString();
+
+    }
+}

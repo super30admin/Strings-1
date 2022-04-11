@@ -1,0 +1,28 @@
+//TC = O(n)
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        Map<Character, Integer> map = new HashMap<>();
+        
+        int i = 0, j=0;
+        int maxLen = 0;
+          while(j < s.length()){
+              
+              char ch = s.charAt(j);
+              
+              if(map.containsKey(ch)){
+                  int chIndex = map.get(ch);
+                  
+                  if(chIndex >= i){
+                      i = chIndex + 1;
+                  }
+              }
+              
+              map.put(ch, j);
+              j++;
+              maxLen = Math.max(maxLen, j-i);
+   
+       }
+        return maxLen;
+    }
+}
