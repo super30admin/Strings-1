@@ -1,51 +1,38 @@
-class longestWordInDictionary {
-    
-    class TrieNode{
-        TrieNode[] children;
-        String word;
-        public TrieNode(){
-            children = new TrieNode[26];
-        }
-    }
-    
-    TrieNode root;
-    
-    public void insert(String word){
-        TrieNode curr = root;
-        for(int i = 0; i < word.length(); i++){
-            char c = word.charAt(i);
-            if(curr.children[c - 'a'] == null){
-                curr.children[c - 'a'] = new TrieNode();
-            }
-            curr = curr.children[c - 'a'];
-        }
-        curr.word = word;
-    }
-    public String longestWord(String[] words) {
-        if(words == null || words.length == 0) return "";
-        root = new TrieNode();
-        for(String word : words){
-            insert(word);
+class customSortString {
+    public String customSortString(String order, String s) {
+        if(order == null || order.length() == 0) return s;
+        
+        StringBuilder str = new StringBuilder();
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
         
-        Queue<TrieNode> q = new LinkedList<>();
-        q.add(root);
-        
-        TrieNode curr = new TrieNode();
-        while(!q.isEmpty()){
-            curr = q.poll();
-            for(int i = 25; i >= 0; i--){
-                if(curr.children[i] != null && curr.children[i].word != null){
-                    q.add(curr.children[i]);
+        for(int i = 0; i < order.length(); i++){
+            char c = order.charAt(i);
+            if(map.containsKey(c)){
+                int cnt = map.get(c);
+                while(cnt > 0){
+                    str.append(c);
+                    cnt--;
                 }
             }
+            map.remove(c);
         }
         
-        if(curr.word == null) return "";
-        return curr.word;
+        for(char c : map.keySet()){
+            int cnt = map.get(c);
+            while(cnt > 0){
+                str.append(c);
+                cnt--;
+            }
+        }
+        
+        return str.toString();
     }
 }
 
-//time complexity O(nk) n is length of arrat of given string 
-//and K is average length of each string
-//space complexity O(nk)
+//time complexity O(m + n) where m is length of order and n is lenght of s string
+//space complexity O(1)
