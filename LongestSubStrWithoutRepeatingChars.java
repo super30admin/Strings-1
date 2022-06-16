@@ -1,3 +1,7 @@
+/*
+Time: O(n): n is a length of input string
+Space: O(1) Set can hold at the max 26 chars for Eng lower case alphabets
+*/
 import java.util.HashSet;
 
 public class LongestSubStrWithoutRepeatingChars{

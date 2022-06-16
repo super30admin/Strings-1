@@ -1,3 +1,9 @@
+/*
+m: length of order
+n: length of input
+Time Comp: O(n)+O(m*(Highest count of char)) ~> O(n)+O(m)
+Space: O(1) : Map can store at the max 26 records for lower case Eng alphabets
+*/
 import java.util.HashMap;
 import java.util.Map;
 
