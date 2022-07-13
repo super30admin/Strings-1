@@ -32,3 +32,59 @@ class Solution {
         return max;
     }
 }
+
+//*****LONGEST SUBSTRING WITHOUT REPEATING CHARACHTER-- USING SET****
+//Time complexity:o(n)^3;
+//Space complexity:o(1);
+//Leetcode runnable: Y;
+//Any doubts:N;
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        //null
+        if(s==null || s.length()==0)
+        {
+            return 0;
+        }
+        if(s.length()==1)
+        {
+            return 1;
+        }
+        //HashSet
+        HashSet<Character> set=new HashSet<>();
+        //Pointers
+        int slow=0;
+        int fast=1;
+        //count var
+        int max=0;
+        //Intially adding slow into the HashSet
+        set.add(s.charAt(slow));
+        
+        while(fast<s.length())
+        {
+            char c=s.charAt(fast);
+            if(set.contains(c))
+            {
+                //we need to move the slow pointer till reaching the particular char that is reapating
+                while(s.charAt(slow)!=c)
+                {
+                    //remove from set
+                    set.remove(s.charAt(slow));
+                    //Move slow
+                    slow++;
+                }
+                //Lastly we have reaxched till character now need to move one more position.
+                slow++;
+            }
+            //At every place calculate count
+            max=Math.max(max, fast-slow+1);
+            //Add char to set
+            set.add(c);
+            //Move the fast pointer
+            fast++;
+            
+        }
+       return max; 
+    }
+}
