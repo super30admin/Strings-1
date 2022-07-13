@@ -1,1 +1,34 @@
+//*****LONGEST SUBSTRING WITHOUT REPEATING CHARACHTER-- USING MAP****
+//Time complexity:o(n);
+//Space complexity:o(1);
+//Leetcode runnable: Y;
+//Any doubts:N;
 
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        //Declare map
+        HashMap<Character, Integer> map=new HashMap<>();
+        //slow pointer
+        int slow=0;
+        //Max for getting the maximum length of substring
+        int max=0;
+        
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            
+            
+            if(map.containsKey(c))
+            {   
+                //It means there is a repeate;
+                //Move the slow pointer;
+                //we are taking here max because we are not removing anything from the map and if the char has occur first and is into the map but not in the current window it will create a mess.
+                slow=Math.max(slow, map.get(c));
+            }
+            max=Math.max(max, i-slow+1);
+            //I am putting i+1 already so that i dont want to add 1 while moving my slow pointer
+            map.put(c,i+1);
+        }
+        return max;
+    }
+}
