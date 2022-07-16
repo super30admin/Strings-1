@@ -1,5 +1,5 @@
 //TC - O(n)
-//SC - O(n)
+//SC - O(1)
 class Solution {
     public String customSortString(String order, String s) {
         HashMap<Character,Integer> map = new HashMap<>();
