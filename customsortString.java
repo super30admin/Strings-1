@@ -1,14 +1,5 @@
-// Time Complexity : O(m+n) m and n are the lenghts of order and s strings
-// Space Complexity : O(n) 
-// Did this code successfully run on Leetcode : Yes
-// Any problem you faced while coding this : No
-
-
-// Your code here along with comments explaining your approach
-traverse the s string and store the freq of each character in a hashmap. Traverse the order string and 
-append the characters in their freq times to the stringbuilder.
-
-
+TC:O(n)
+SC:O(n)
 
 class Solution {
     public String customSortString(String order, String s) {
