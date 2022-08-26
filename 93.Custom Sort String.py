@@ -1,28 +1,35 @@
 class Solution:
     def customSortString(self, order: str, s: str) -> str:
-        D = {}
-        for i in range(len(s)):
+        m = {}
+        result = []
+        # chars = {k: 0 for k in order}
+        # print(chars)
+        for i in range(len(s)):  # frequency map
+            # if s[i] not in m.keys():
+            #     m[s[i]] = 1
+            # else:
+            #     m[s[i]] += 1
             c = s[i]
-            D[c] = D.get(c, 0) + 1
+            m[c] = m.get(c, 0) + 1
 
-        L = []
         for i in range(len(order)):
-            c = order[i]
-            if c in D.keys():
-                count = D.get(c)
+            ch = order[i]
+            if ch in m.keys():
+                count = m.get(ch)
                 while count > 0:
-                    L.append(c)
+                    result.append(ch)
                     count -= 1
-                D.pop(c)
-        # to put remaining elements in the list
-        for key in D.keys():
-            count = D[key]
-            while count > 0:
-                L.append(key)
-                count -= 1
-        return "".join(L)
+                # del m[ch]
+                m.pop(ch)
 
-# TC = O(N+M)
+        for i in m.keys():
+            count = m.get(i)
+            while count > 0:
+                result.append(i)
+                count -= 1
+        return "".join(result)
+
+# Time Complexity  = O(N+M)
 # Space complexity : for Dictionary D O(1) and for List L O(n)
 # Did this code successfully run on Leetcode : yes
 # Any problem you faced while coding this : Syntax error
