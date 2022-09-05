@@ -1,4 +1,4 @@
-# Time complexity : O(2*n)
+# Time complexity : O(m) --> size of order string
 # Space complexity : O(1)
 # Leetcode : Solved and submitted
 
