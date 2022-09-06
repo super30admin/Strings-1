@@ -1,0 +1,52 @@
+//Technique1 : Two Pointers and HashSet
+//Time Complexity : O(n)
+//Space : Complexity : O(1)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+      //HashMap to Char and Intger for next slow
+        HashSet<Character> set = new HashSet<>();
+        
+        int slow = 0;
+        int max = 0;
+        
+        //i = fast
+        for(int i=0; i< s.length(); i++){
+            char c = s.charAt(i); 
+            //System.out.println(c);
+              while(set.contains(c)){
+                  set.remove(s.charAt(slow));
+                  
+                  slow = slow + 1;
+                  System.out.println(slow);
+              }
+              set.add(c);
+              max = Math.max(max, i-slow+1);
+        }
+        return max;
+    }
+}
+
+//Technique2 : Two Pointers and HashMap
+//Time Complexity : O(n)
+//Space : Complexity : O(1)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int slow = 0;
+        int max = 0;
+        
+        //i = fast pointer
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            
+            if(map.containsKey(c)){
+                slow = Math.max(slow, map.get(c));
+            }
+            max = Math.max(max, i-slow + 1); //  Fast-slow +1 ==> Max String Length
+            map.put(c, i+1);
+        }
+        return max;
+    }
+}
