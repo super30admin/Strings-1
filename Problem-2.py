@@ -5,7 +5,7 @@ class Solution:
     def lengthOfLongestSubstring(self, a):
     n is length of a
       Time Complexity: O(n)
-      Space Complexity: O(n)
+      Space Complexity: O(1)
 '''
 from collections import deque
 class Solution:
