@@ -1,0 +1,44 @@
+Custom Sort String
+#tc: O(n)
+#sc: O(n)
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        #empty string for answer
+        ans_str=""
+        #count the items in s
+        _dict = Counter(s)
+        #loop through order
+        for i in order:
+            #if i is in s
+            if i in s:
+                #add it to answer string (as many times as it occurs in s)
+                ans_str += (i*_dict[i])
+                #delete it from the count dict
+                del _dict[i]
+        #loop through keys and values in whatevers left in the dict
+        for k,v in _dict.items():
+            #add it as many times as it occurs in s
+            ans_str += (k*v)
+        #bring the answer string home
+        return ans_str
+        
+Longest Substring Without Repeating Characters
+#tc: O(n)
+#sc: O(1)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        
+        maxWindowSize = -float("inf")
+        windowStart = 0
+        currentRunningString = deque([])
+        
+        if s == "":
+            return 0
+        for windowEnd in range(len(s)):
+            currentRunningString.append(s[windowEnd])
+            while windowEnd-windowStart+1 != len(set(currentRunningString)):
+                currentRunningString.popleft()
+                windowStart += 1
+            maxWindowSize = max(maxWindowSize, windowEnd-windowStart+1)
+        return maxWindowSize
