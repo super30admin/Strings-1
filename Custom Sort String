@@ -1,0 +1,21 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        heap = []
+        a = {}
+        len_order = len(order)
+        for indx,val in enumerate(order):
+            a[val] = indx
+        for i in range(len(s)):
+            if s[i] in a:
+                heapq.heappush(heap,(a[s[i]],s[i]))
+            else:
+                heapq.heappush(heap,(len_order,s[i]))
+        res = ""
+        while heap:
+            ind,val = heapq.heappop(heap)
+            res += val
+        return res
+    
+# Time Complexity: O(nlogn)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode
