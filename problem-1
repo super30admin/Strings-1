@@ -1,0 +1,41 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        
+        HashMap<Character,Integer> hm=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            if(!hm.containsKey(s.charAt(i))){
+                hm.put(s.charAt(i),0);
+                
+            }
+            int count=hm.get(s.charAt(i));
+            count++;
+            hm.replace(s.charAt(i),count);
+        }
+        StringBuilder result=new StringBuilder();
+        for(int i=0;i<order.length();i++){
+            if(hm.containsKey(order.charAt(i))){
+            int count=hm.get(order.charAt(i));
+            
+            while(count>0){
+                result.append(order.charAt(i));
+            count--;
+            }
+          hm.remove(order.charAt(i));
+        }
+        }
+        for(Map.Entry<Character,Integer> i:hm.entrySet()){
+            char ch=i.getKey();
+            int count = i.getValue();
+
+           while (count > 0) {
+
+               result.append(ch);
+
+               count--;
+
+           }
+            
+        }
+       return String.valueOf(result); 
+    }
+}
