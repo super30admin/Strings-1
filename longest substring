@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.length() == 1){
+            return 1;
+        }
+          if(s.length() == 0){
+            return 0;
+        }
+        unordered_map<char,int> map;
+        int maximum = 0;
+        int j = 0;
+    
+        for(int i = 0 ; i< s.length(); i++){
+            if(map.find(s[i]) != map.end()){
+                // slow pointer should be the latest one, as if some  initial char repeats in end, slow pointer will go to initial and maximum will increase ( i -j )  
+                j = max(map[s[i]], j );
+            }
+            map[s[i]] = i+1;
+            maximum = max(maximum,i-j+1);
+        }
+    return maximum;
+    }
+};

@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        unordered_map<char,int> map;
+        for(int i = 0; i<s.length(); i++){
+            map[s[i]]++;
+        }
+        string answer ="";
+        
+    for(int i=0 ; i<order.length(); i++){
+        if(map.find(order[i])!= map.end()){
+            cout << order[i] << " ";
+            for(int j = 0 ; j<map[order[i]]; j++){
+                answer.push_back(order[i]);
+                
+            }
+            map[order[i]]=0;
+        }  
+        }
+        for(auto it : map ){
+            for(int i =0 ; i< it.second ; i++){
+                answer.push_back(it.first);
+            }
+        }
+    
+        return answer;
+    }
+};
