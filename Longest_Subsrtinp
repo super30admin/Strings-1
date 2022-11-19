@@ -1,0 +1,35 @@
+//TimeCoplexoty O(n)
+//SpaceComplexity O(n)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+
+        if(s.length() == 0)return 0;
+        int n = s.length();
+
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        int start = 0;
+        int end = 0;
+        int max = Integer.MIN_VALUE;
+        int len = 0;
+
+       while(end < n){
+           
+           char ch = s.charAt(end);
+           if(map.containsKey(ch) && start <= map.get(ch)){
+               start = map.get(ch)+1;
+               map.put(ch,end);        
+               len = end - start +1;
+              
+           }else{
+               map.put(ch,end);
+               len++;
+           }
+                max = Math.max(max,len);
+                 end++;
+       }
+            
+        return max;
+    }
+}
