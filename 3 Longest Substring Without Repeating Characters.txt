@@ -1,0 +1,70 @@
+//3. Longest Substring Without Repeating Characters
+
+/*Time Complexity : 
+Deque - O(n)
+Hashset - O(1)
+Space Complexity : 
+Deque - O(n)
+hashset - O(1)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+Deque - creating a queue, adding characters from the right side, until a character which is already present 
+inside deque is encountered, then calculating the current size of the deque, and comparing with the max size,
+popping from the left from the deque until the current character's previous occurence is found,
+popping it too, and appending the new occurence, and continue this until the end of the string
+Hashset - Iterating over the string and appending the character to the hashset until a character which
+is already inside the hashset is encountered, then removing the elements in the order they got appended until
+the current element is found, moving the pointer to that location, and updating the maximum length of substring
+based on the current index and index of recently deleted same character. Repeating until end of the string
+*/
+
+// class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         HashSet<Character>set=new HashSet<>();
+//         int slow=0;int max=0;
+//         for(int i=0;i<s.length();i++){
+//             char c=s.charAt(i);
+//             if(set.contains(c)){
+//                 while(s.charAt(slow)!=c){
+//                     set.remove(s.charAt(slow));
+//                     slow++;
+//                 }
+//                 slow++;
+//             }else{
+//                 set.add(c);
+//             }
+//             max=Math.max(max,i-slow+1);
+//         }
+//         return max;
+//     }
+// }
+
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character,Integer>map=new HashMap<>();
+        int slow=0;int max=0;
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            if(map.containsKey(c)){
+                slow=Math.max(slow,map.get(c)+1);
+            }
+            map.put(c,i);
+            max=Math.max(max,i-slow+1);
+        }
+        return max;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
