@@ -1,0 +1,26 @@
+// Time Complexity o(n) space complexity o(1)
+class Solution {
+    public String customSortString(String order, String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        for (int i = 0; i < order.length(); i++) {
+            int count = map.getOrDefault(order.charAt(i), 0);
+            for (int j = 0; j < count; j++) {
+                sb.append(order.charAt(i));
+            }
+            map.remove(order.charAt(i));
+        }
+        for (char c : map.keySet()) {
+            int k = map.get(c);
+            for (int i = 0; i < k; i++) {
+                sb.append(c);
+            }
+            
+        }
+        return sb.toString();
+    }
+}
