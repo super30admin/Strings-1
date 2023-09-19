@@ -1,7 +1,7 @@
 # ## Problem1
 # Custom Sort String (https://leetcode.com/problems/custom-sort-string/)
-# // Time Complexity :O(1)
-# // Space Complexity :O(1)
+# // Time Complexity :O(n)
+# // Space Complexity :O(n)
 # // Did this code successfully run on Leetcode :Yes
 # // Any problem you faced while coding this :No
 
