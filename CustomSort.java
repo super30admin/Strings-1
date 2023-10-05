@@ -1,5 +1,5 @@
 /*
-    Time Complexity - O(size(order) + size(str))
+    Time Complexity - O(n) where n is the length of str. Maximum length of order is just 26. Hence length of order can be ignored.
     Space Complexity - O(1) excluding the size of the ouput string. Count[] is of fixed size 26, hence can be considered O(1). 
  */
 class Solution {
