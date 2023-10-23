@@ -1,6 +1,6 @@
 //## Problem1 Custom Sort String (https://leetcode.com/problems/custom-sort-string/)
 
-// Time Complexity : O(order.length + s.length)
+// Time Complexity : O(s.length)
 // Space Complexity : O(1)
 // Did this code successfully run on Leetcode : yes
 // Any problem you faced while coding this : no
