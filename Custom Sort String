@@ -1,0 +1,14 @@
+#time complexity: O(n)
+#Space complexity: O(n)
+#did it run on leetcode: yes
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        s_count = Counter(s)
+        print(s_count)
+        result = ''.join([char*s_count[char] for char in order])
+
+        for char, freq in s_count.items():
+            if char not in order:
+                result += char*freq
+        
+        return result
