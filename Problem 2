@@ -1,0 +1,24 @@
+Longest Substring Without Repeating Characters
+
+# time complexity of O(n)
+# space complexity is O(min(m, n))
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # Initialize variables
+        longest_length = 0
+        left, right = 0, 0
+        seen = set()
+
+        # Move the right pointer and expand the window
+        while right < len(s):
+            if s[right] not in seen:
+                seen.add(s[right])
+                right += 1
+                longest_length = max(longest_length, right - left)
+            else:
+                seen.remove(s[left])
+                left += 1
+
+        return longest_length
