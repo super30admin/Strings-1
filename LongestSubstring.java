@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 //TC - O(n)
-// SC - O(N) - N is length of resultant longest substring
+// SC - O(1) -  Resultant space of O(N) is length of resultant longest substring does not count in space complexity
 
 //Using sliding window approach with start and end pointers. THe end pointer fills a set with the result substring,
 //whenever, there is a repeating char, the start pointer moves forward until the char is removed.
