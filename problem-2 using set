@@ -1,0 +1,29 @@
+//time: O(2n) ~ O(n) each char visited twice in worst case when string is for eg : "aaaaaa"
+//space: O(m) - set size
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+       Set<Character> set = new HashSet<>();
+        int i=0,j=0;
+        int res=0;
+        //take two pointers i and j referring left and right side
+        while(i<s.length() && j<s.length())    
+        {   
+            //check char at right
+            char c= s.charAt(j);
+            //add if it doesnt exist in set
+            if(!set.contains(c))
+            { 
+                set.add(c);
+                j++;
+                res=Math.max(res,set.size());
+            }
+            //if we encounter duplicate then shrink window by increasing i and removing ith char
+            else
+            {
+                set.remove(s.charAt(i));
+                i++;
+            }
+        }
+        return res;
+    }
+}
