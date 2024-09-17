@@ -1,0 +1,62 @@
+/**************
+Time O(n)        n = length of T
+Space : O(n)    
+LeetCode yes
+Problem No 
+****************/
+
+class Solution {
+    public String customSortString(String S, String T) {
+        
+        Map<Character,Integer> map =new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        
+        //Storing characters of T with their count
+        for(int i =0;i<T.length();i++)
+        {
+            char ch = T.charAt(i);
+            if(!map.containsKey(ch))
+                map.put(ch,1);
+            else
+                map.put(ch,map.get(ch)+1);
+        }
+        
+        //Iterating through S and adding to result(hence order is maintained)
+        for(int i =0;i< S.length();i++)
+        {
+            char ch = S.charAt(i);
+            if(map.containsKey(ch))
+            {
+                int times = map.get(ch);
+                append(sb, times,ch);
+                map.remove(ch);
+            }
+            
+        }
+        
+        //Adding remaining characters in T to result which were not in S
+        Set<Character> set = map.keySet();
+        if(set.size() > 0)
+        {
+             for(char key : set)
+            {
+            if(map.get(key) > 1)
+                append(sb,map.get(key),key);
+            else
+                sb.append(key);
+            }
+        }
+ 
+        return sb.toString();
+    }
+    
+    
+    public static void append(StringBuilder sb , int times, char ch)
+    {
+        
+        for(int i =0; i< times; i++)
+            sb.append(ch);
+    }
+    
+    
+}
