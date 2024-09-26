@@ -1,0 +1,62 @@
+/*
+Time Complexity: O(n)
+Space Complexity : O(n)
+Leetcode: successful
+Approach:
+
+put everything in T and S in a hashmap with count
+Whatever in T is not in S, Hashmap, put it in one string builder
+traverse through S, whatever is there in T as well append it to the another stringbuilder.
+
+club these two string we have the answer.
+
+*/
+
+class Solution {
+    public String customSortString(String S, String T) {
+        
+        HashMap<Character, Integer> hm = new HashMap<>();
+        
+        HashMap<Character, Integer> hms= new HashMap<>();
+        
+        for (int i=0;i<S.length();i++)
+        {
+            hms.put(S.charAt(i),1);
+        }  
+        
+        StringBuilder sb1= new StringBuilder();
+        
+        for (int i=0;i<T.length();i++)
+        {
+            
+            if(!hms.containsKey(T.charAt(i)))
+            {
+                sb1.append(T.charAt(i));
+            }
+            if(hm.containsKey(T.charAt(i)))
+            {
+                hm.put(T.charAt(i),hm.get(T.charAt(i))+1);
+                continue;
+            }
+            hm.put(T.charAt(i),1);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i=0;i<S.length();i++)
+        {
+            if(hm.containsKey(S.charAt(i)))
+            {
+                int temp=hm.get(S.charAt(i))   ;
+                for(int j=0;j<temp;j++)
+                {
+                    sb.append(S.charAt(i));
+                    hm.put(S.charAt(i),hm.get(S.charAt(i))-1);
+                }
+            }
+        }
+        sb.append(sb1);
+        
+        return sb.toString();
+    }
+}

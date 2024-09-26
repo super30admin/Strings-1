@@ -1,0 +1,44 @@
+/*
+Time Complexity: O(n2)
+Space Complexity: n
+Leetcode: successful
+
+Approach:
+
+put everything in the hashset.
+whenever you encounter previously used character.
+reset the hashset, 
+move from start+1 to new index.
+
+
+
+*/
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        HashSet<Character> hs = new HashSet<>();
+        int start=0;
+        int max=Integer.MIN_VALUE;
+        for(int i=start;i<s.length();i++)
+        {
+            Character temp=s.charAt(i);
+      //      System.out.println(hs);
+
+            if(hs.contains(temp))
+            {
+              
+                if(hs.size()>max)
+                    max=hs.size();
+                start=start+1;
+                i=start-1;
+                hs= new HashSet<>();
+            }
+            else{
+                hs.add(temp);
+            }
+        }
+     //   System.out.println(hs);
+        return Math.max(max,hs.size());
+    }
+}
