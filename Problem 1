@@ -1,0 +1,25 @@
+//Time complexity: O(n)
+//Space complexity: O(n)
+//Accepted in Leetcode: Yes
+
+//Idea: Keep a hashmap in order to keep track of the number of occurences of each character in the string.
+//Iterate over the string to until the first repeating character is found(if such not found, answer = length of string)
+//When the repeating character is found, continue the same process by adjusting the pointers to the first repeating character.
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int len = s.length();
+        //char arr[] = s.toCharArray();
+        if(len==0) return 0;
+        HashMap<Character,Integer> map = new HashMap<>();
+       int max=0;
+        for (int i=0, j=0; i<s.length(); ++i){
+            if (map.containsKey(s.charAt(i))){
+                j = Math.max(j,map.get(s.charAt(i))+1);
+            }
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-j+1);
+        }
+        return max;
+    }
+}
