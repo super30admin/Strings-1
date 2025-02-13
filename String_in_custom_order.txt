@@ -1,0 +1,27 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        if order == None or len(order) == 0:
+            return
+        counter = {}
+        result = []
+        for i in range(len(s)):
+            c = s[i]
+            if c not in counter:
+                counter[c] = 1
+            else:
+                counter[c] += 1
+        
+        for i in range(len(order)):
+            s = order[i]
+            if s in counter:
+                times = counter[s]
+                result.append(s * times)
+                del counter[s]
+        
+        for key,value in counter.items():
+            result.append(key * value)
+
+        return "".join(result)
+
+#time = O(n)
+#Space = O(1)
