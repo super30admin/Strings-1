@@ -1,0 +1,25 @@
+# TC : O(m+n)
+# SC : O(1)
+
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        dictionary = defaultdict(int)
+        result = []
+        for i in range(len(s)):
+            dictionary[s[i]] += 1
+        for  j in range(len(order)):
+            if order[j] in dictionary:
+                for k in range(dictionary[order[j]]):
+                    result.append(order[j])
+                del dictionary[order[j]]
+        for key in dictionary.keys():
+            for m in range(dictionary[key]):
+                result.append(key)
+
+        
+        return  "".join(result)
+                    
+
+
+            
+        
