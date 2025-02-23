@@ -1,0 +1,23 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        if order is None or len(order) == 0:
+            return s
+        hashMap = dict()
+        result = []
+        
+        for c in s:
+            if c not in hashMap:
+                hashMap[c] = 1
+            else:
+                hashMap[c] += 1
+        
+        for c in order:
+            if c in hashMap:
+                times = hashMap[c]
+                result.extend([c] * times)
+                del hashMap[c]
+        
+        for key, value in hashMap.items():
+            result.extend([key] * value)
+        
+        return ''.join(result)  # Corrected return statement
