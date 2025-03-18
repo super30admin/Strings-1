@@ -1,0 +1,133 @@
+// Time Complexity :
+// Space Complexity :// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        if (n == 0)
+            return 0;
+        HashSet<Character> mySet = new HashSet<>();
+        int maxCount = 0;
+        int slow = 0;
+        int count=0;
+        for (int i = 0; i < n; i++) {
+            char ch=s.charAt(i);
+            while(mySet.contains(ch)){
+               char ch1=s.charAt(slow); 
+                mySet.remove(ch1);
+                 slow++;
+                }
+                mySet.add(ch);
+            maxCount=Math.max(maxCount,i-slow+1);
+        }
+        return maxCount;
+    }
+}
+
+
+
+Solution-1:
+// Time Complexity :O(2n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> mySet = new HashSet<>(); //to store char from string which we are looping 
+        int n = s.length();
+        if (s == null || n == 0) {//null case checking
+            return 0;
+        }
+        int max = 0;
+        int slow = 0; //slow pointer
+        for (int i = 0; i < n; i++) { //fast pointer as i
+            char ch = s.charAt(i);
+            if (mySet.contains(ch)) { //if ch already exist in hashset it means duplicate occures in sr=tring need to avoid 
+                while (s.charAt(slow) != ch) { //to avoid duplicate char moving slow pointer after duplicate char index
+                    mySet.remove(s.charAt(slow)); //removing each slow char from hashset
+                    slow++; 
+                }
+                slow++; //have to escape duplicate char as well
+            }
+            mySet.add(ch); //if it does not exist just adding to hashset
+            max = Math.max(max, i - slow + 1); //finding max substring length among all possiblities
+
+        }
+        return max;
+
+    }
+}
+
+
+solution-2
+// Time Complexity :O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character,Integer> myMap = new HashMap<>(); //to store charecter and corresponding indices from string
+        int n = s.length();
+        if (s == null || n == 0) { //null case checking
+            return 0;
+        }
+        int max = 0;
+        int slow = 0; //slow pointer
+        for (int i = 0; i < n; i++) { //fast pointer
+            char ch = s.charAt(i);
+            if (myMap.containsKey(ch)) { //if map contains ch moving slow pointer by taking max between slow and myMap.get(ch)+1
+                  slow=Math.max(slow,myMap.get(ch)+1);
+            }
+            myMap.put(ch,i); //if ch not exist adding ch to hash,ap with indices
+            max = Math.max(max, i - slow + 1); //fining max substring among all possibilities
+
+        }
+        return max;
+
+    }
+}
+
+solution-3
+// Time Complexity :O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach: same approach as hashmap but here instead of hashmap used underthe hashmap ds array as used here to store indices of characters.
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int[] arr = new int[100];
+        Arrays.fill(arr, -1);
+        int n = s.length();
+        if (s == null || n == 0) {
+            return 0;
+        }
+        int max = 0;
+        int slow = 0;
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if (arr[ch - ' '] != -1) {
+                slow = Math.max(slow, arr[ch - ' '] + 1);
+            } 
+                arr[ch - ' '] = i;
+            
+
+            max = Math.max(max, i - slow + 1);
+
+        }
+        return max;
+
+    }
+}
