@@ -1,0 +1,36 @@
+// Time Complexity : O(n) +O(m*n) + O(n) -> where m is <= n so the Time complexity would be O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+// Your code here along with comments explaining your approach: i maintianed frequency map here to maintain frequency of each char from s and then frist apend order char from map to string then add remaining char from map
+
+class Solution {
+    public String customSortString(String order, String s) {
+        int m = order.length();
+        int n = s.length();
+        HashMap<Character, Integer> myMap = new HashMap<>();
+        for (int i = 0; i < n; i++) { // O(n) length of s
+            char ch = s.charAt(i);
+            myMap.put(ch, myMap.getOrDefault(ch, 0) + 1);
+        }
+        StringBuilder st = new StringBuilder();
+        for (int j = 0; j < m; j++) { // O(m) length of order
+            char ch = order.charAt(j);
+            if (myMap.containsKey(ch)) { //O(1)
+                int count = myMap.get(ch);//O(1)
+                for (int k = 0; k < count; k++) { //O(n)
+                    st.append(ch);
+                }
+                myMap.remove(ch);
+            }
+        }
+        Set<Character> keySet = myMap.keySet();
+        for (char ch : keySet) { 
+            int count = myMap.get(ch);
+            for (int k = 0; k < count; k++) { // O(n)
+                st.append(ch);
+            }
+        }
+        return new String(st);
+    }
+}
