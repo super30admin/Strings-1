@@ -1,0 +1,100 @@
+## Problem1 
+class Solution {
+
+   public String customSortString(String S, String T) {
+
+       StringBuilder sb = new StringBuilder();
+
+       Map<Character, Integer> map = new HashMap<>();
+
+       // compute the frequency map
+
+       for (Character ch : T.toCharArray()) {
+
+           map.put(ch, map.getOrDefault(ch, 0) + 1);
+
+       }
+
+       // respect ordering as in S.
+
+       for (Character ch : S.toCharArray()) {
+
+           int count = map.getOrDefault(ch, 0);
+
+           while (count > 0) {
+
+               sb.append(ch);
+
+               count--;
+
+           }
+
+           map.remove(ch);
+
+       }
+
+       // get the remaining characters, that have no specific ordering
+
+       // without the loss of generality, they are appended at the end
+
+       for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+
+           Character ch = entry.getKey();
+
+           int count = entry.getValue();
+
+           while (count > 0) {
+
+               sb.append(ch);
+
+               count--;
+
+           }
+
+       }
+
+       return sb.toString();
+
+   }
+
+}
+
+## Problem2
+
+class Solution {
+
+   public int lengthOfLongestSubstring(String s) {
+
+       int start = 0, end = 0;
+
+       Set<Character> set = new HashSet<>();
+
+       int maxLen = 0;
+
+       while (start < s.length() && end < s.length()) {
+
+           Character ch = s.charAt(end);
+
+           // remove char from set, until s[end] can be inserted.
+
+           while (set.contains(ch)) {
+
+               set.remove(s.charAt(start++));
+
+           }
+
+           // insert s[end]
+
+           set.add(ch);
+
+           maxLen = Math.max(maxLen, set.size());
+
+           end++;
+
+       }
+
+       return maxLen;
+
+   }
+
+} 
