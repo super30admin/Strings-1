@@ -1,0 +1,39 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        //BruteForce 1 : we can iterate trough S and genererate all the permutations>> ForEach(Permutaion) check with two pointers the order   
+            // TC :O(n3) for Permutauins and O(mxn)
+
+        //BruteForce 2 : Sort the s String and check with two pointers if all the character at i are available and none of the next char are shoiwing up out of their order
+            // TC : O(nlogn) + O(m+n)    SC : O(1)
+
+        //Approach 1 : Map the<Char,Frequency> for String s and make a quick look up in the Map and can return false if the map doesn't contain all of the characters 
+            // TC : O(n+m) SC : O(m) or O(1) if the string only contians constant number  like all smal characters  
+
+            Map<Character,Integer> freqMap = new HashMap<>();
+            StringBuilder customOrder = new StringBuilder();
+            for(int i =0 ; i< s.length(); i++){
+                freqMap.put(s.charAt(i), freqMap.getOrDefault(s.charAt(i),0) +1);
+            }
+
+            for(int i=0; i< order.length();i++){
+                char c = order.charAt(i);
+                if(freqMap.containsKey(c)){
+                    int count = freqMap.get(c);
+                    while(count > 0){
+                        customOrder.append(c);
+                        count--;
+                    }
+                    freqMap.remove(c);
+                }
+            }
+
+            for(char c : freqMap.keySet()){
+                int count = freqMap.get(c);
+                    while(count > 0){
+                        customOrder.append(c);
+                        count--;
+                    }
+            }
+        return customOrder.toString();
+    }
+}

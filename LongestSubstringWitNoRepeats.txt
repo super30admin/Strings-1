@@ -1,0 +1,24 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        //Brutre Force 1 : Iteratively it would traver trought all combinations and return the largest string without repeating characters 
+            // TC - O(n2)  : SC - O(1) as they can be constant no matter the 
+        // Approach 1 : iterate trough the string and use a HashSet to store the occurence of hte character and keep updating the max string length
+            //Tc - O(n)   : SC -O(1) as they can be constant proportional to the string size
+        //Approach 2 : iterate and stor ethe indexes of the characters 
+            //Tc - O(n)   : SC O(1) as they can be constant proportional to the string size
+
+        Map<Character,Integer> map =  new HashMap<>();
+        int maxSubString = 0;
+
+        for(int i=0, slow=0 ; i< s.length(); i++){
+            char c = s.charAt(i);
+            // if c is in Map 
+            if(map.containsKey(c) && map.get(c) >= slow){
+                slow = map.get(c)+1; // 6 - 0 = 6
+            }              // if c is not in Map {{t,0},{m,2},{z,3},{u,4},{x,5}}
+            map.put(c,i); 
+            maxSubString = Math.max(maxSubString, i - slow+1);    //update Max count 
+        }
+        return maxSubString;
+    }
+}
