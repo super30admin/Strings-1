@@ -1,0 +1,37 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        if(s == null || s.length() == 0 || s.length() == 1){
+            return s;
+        }
+        //Using hashmap, store char and its frequency in it
+        HashMap<Character, Integer> hm = new HashMap<>();
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i< s.length(); i++){
+            char c = s.charAt(i);
+            hm.put(c, hm.getOrDefault(c, 0)+1);
+        } 
+        //traverse each char in order, and if it's in hashmap, append it to result
+        for(int i = 0; i< order.length(); i++){
+            char c = order.charAt(i);
+            if(hm.containsKey(c)){
+                int freq = hm.get(c);
+                while(freq > 0){
+                    result.append(c);
+                    freq--;
+                }
+                hm.remove(c);   //remove after adding
+            }
+        }
+        //chars which are not in order, add them to result
+        if(!hm.isEmpty()){
+            for(char c : hm.keySet()){
+                int freq = hm.get(c);
+                while(freq > 0){
+                    result.append(c);
+                    freq--;
+                }
+            }
+        }
+        return result.toString();
+    }
+}
