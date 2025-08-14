@@ -1,0 +1,23 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0){
+            return 0;
+        }
+        //using two-pointer(start & end) pointing at 0 index, traverse end with each char and add char and index to HashMap
+        int start = 0;
+        int end = 0;
+        int max = 0;
+        HashMap<Character, Integer> hm = new HashMap<>();
+        while(end < s.length()){
+            char c = s.charAt(end);
+            //when encouter duplicate b/w start and end, start from that char and store max
+            if(hm.containsKey(c) && hm.get(c) >= start){
+                max = Math.max(max, end - start);
+                start = hm.get(c) + 1; 
+            }
+            hm.put(c, end);
+            end++;
+        }
+        return Math.max(max, end - start);
+    }
+}
