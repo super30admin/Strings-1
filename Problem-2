@@ -1,0 +1,26 @@
+// Time Complexity: O(n), n -> length of string s 
+// Space Complexity: O(1)
+
+// Start a left pointer from 0 and go through the characters in the string and store the character and its index in a hashmap
+// If a character already exists in the map move the left pointer to the farthest point that is itself or the current characters previous index + 1
+// Keep track of max length recorded from the left pointer to the current index
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int length = 0;
+        int left = 0;
+        HashMap<Character, Integer> mp = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if(mp.containsKey(ch)) {
+                // move left pointer to the farthest point
+                left = Math.max(mp.get(ch) + 1, left); 
+            }
+            mp.put(ch, i);
+            length = Math.max(length, i - left + 1); //calculate max length
+        }
+
+        return length;
+    }
+}

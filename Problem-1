@@ -1,0 +1,39 @@
+// Time Complexity: O(m + n), m -> length of string order, n -> length of string s 
+// Space Complexity: O(1)
+
+// Keep track of the frequency of the characters in the string s in a hash map
+// Go through the string order and append characters in it frequency(from map) number of times to the result string
+// Append the characters that are there in the map but not present in the order string and return the result
+
+class Solution {
+    public String customSortString(String order, String s) {
+        HashMap<Character, Integer> mp = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+
+        // Store frequency of characters of string s
+        for(char ch : s.toCharArray()) {
+            mp.put(ch, mp.getOrDefault(ch, 0) + 1);
+        }
+
+        // Append characters of string order to result based on frequency in map
+        for(char ch : order.toCharArray()) {
+            if(mp.containsKey(ch)) {
+                int count = mp.get(ch);
+                for(int i = 0 ; i < count; i++) {
+                    sb.append(ch);
+                }
+                mp.remove(ch);
+            }
+        }
+
+        // Append characters not present in string order
+        for(char ch : mp.keySet()) {
+            int count = mp.get(ch);
+            for(int i = 0 ; i < count; i++) {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
+    }
+}
