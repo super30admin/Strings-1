@@ -1,0 +1,24 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : None
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int slow = 0;
+        int n = s.length();
+        int max = 0;
+        int[] map = new int[256];
+        Arrays.fill(map, -1);
+
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (map[c] != -1) {
+                slow = Math.max(slow, map[c] + 1);
+            }
+            map[c] = i;
+            max = Math.max(max, i - slow + 1);
+        }
+
+        return max;
+    }
+}
